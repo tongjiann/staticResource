@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,23 +40,24 @@ public class CreateDir {
         fos.write(buildCatalogue(projNameList));
         fos.write(sb.toString().getBytes());
         fos.close();
+        FileInputStream fis = new FileInputStream(mdFile);
+        System.out.println(new String(fis.readAllBytes()));
+        fis.close();
     }
 
     private static byte[] buildCatalogue(List<String> projNameList) {
         StringBuilder sb = new StringBuilder();
         sb.append("# 目录\n");
-        projNameList.forEach(projName->{
-            sb.append("- ["+projName+"](#"+ replaceProjName(projName)+")\n");
-        });
+        projNameList.forEach(projName -> sb.append("- [" + projName + "](#" + replaceProjName(projName) + ")\n"));
         sb.append("---\n");
         return sb.toString().getBytes();
     }
 
     private static String replaceProjName(String projName) {
-        List<String > list = Arrays.asList(".","@");
+        List<String> list = Arrays.asList(".", "@");
         for (String s : list) {
-            if(projName.contains(s)){
-                projName = projName.replace(s,"");
+            if (projName.contains(s)) {
+                projName = projName.replace(s, "");
             }
         }
         return projName.toLowerCase();
