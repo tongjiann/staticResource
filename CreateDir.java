@@ -49,7 +49,7 @@ public class CreateDir {
         StringBuilder sb = new StringBuilder();
         sb.append("# 目录\n");
         projNameList.forEach(projName -> sb.append("- [" + projName + "](#" + replaceProjName(projName) + ")\n"));
-        sb.append("---\n");
+        sb.append("\n---\n---\n").append("# 项目\n");
         return sb.toString().getBytes();
     }
 
