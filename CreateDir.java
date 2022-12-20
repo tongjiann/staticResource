@@ -72,10 +72,10 @@ public class CreateDir {
             sb.append("- [").append(fileName).append("](").append(dirName).append("/").append(fileName).append(")\n");
             return;
         }
-        for (int i = 0; i < level; i++) {
-            sb.append("#");
-        }
         if (!".".equals(fileName)) {
+            for (int i = 0; i < level; i++) {
+                sb.append("#");
+            }
             sb.append(" ").append(fileName).append("\n");
         }
         File[] a = file.listFiles();
